@@ -1,0 +1,397 @@
+Archive member included because of file (symbol)
+
+C:/Program Files/Rowley Associates Limited/CrossWorks for ARM 2.0/lib/libc_v4t_a_le.a(__int32_udivmod.o)
+                              ARM Flash Release/ctl_at91sam7.o (__udivsi3)
+
+Allocating common symbols
+Common symbol       size              file
+
+j                   0x4               ARM Flash Release/lcd.o
+i                   0x4               ARM Flash Release/lcd.o
+
+Memory Configuration
+
+Name             Origin             Length             Attributes
+UNPLACED_SECTIONS 0xffffffff         0x00000000         xw
+User_Peripherals 0xf0000000         0x0fff0000         xw
+System_Controller 0xfffff000         0x00001000         xw
+SRAM             0x00200000         0x00010000         xw
+FLASH            0x00100000         0x00040000         xr
+*default*        0x00000000         0xffffffff
+
+Linker script and memory map
+
+                0xf0000000                __User_Peripherals_segment_start__ = 0xf0000000
+                0xffff0000                __User_Peripherals_segment_end__ = 0xffff0000
+                0xfffff000                __System_Controller_segment_start__ = 0xfffff000
+                0x00000000                __System_Controller_segment_end__ = 0x0
+                0x00200000                __SRAM_segment_start__ = 0x200000
+                0x00210000                __SRAM_segment_end__ = 0x210000
+                0x00100000                __FLASH_segment_start__ = 0x100000
+                0x00140000                __FLASH_segment_end__ = 0x140000
+                0x00000400                __STACKSIZE__ = 0x400
+                0x00000100                __STACKSIZE_IRQ__ = 0x100
+                0x00000100                __STACKSIZE_FIQ__ = 0x100
+                0x00000000                __STACKSIZE_SVC__ = 0x0
+                0x00000000                __STACKSIZE_ABT__ = 0x0
+                0x00000000                __STACKSIZE_UND__ = 0x0
+                0x00000400                __HEAPSIZE__ = 0x400
+                0x00200000                __vectors_ram_load_start__ = __SRAM_segment_start__
+
+.vectors_ram    0x00200000       0x3c
+                0x00200000                __vectors_ram_start__ = .
+ *(.vectors_ram)
+                0x0020003c                . = ((__vectors_ram_start__ + 0x3c) MAX .)
+ *fill*         0x00200000       0x3c 00
+                0x0020003c                __vectors_ram_end__ = (__vectors_ram_start__ + SIZEOF (.vectors_ram))
+                0x00000001                . = ASSERT (((__vectors_ram_end__ >= __SRAM_segment_start__) && (__vectors_ram_end__ <= (__SRAM_segment_start__ + 0x10000))), error: .vectors_ram is too large to fit in SRAM memory segment)
+                0x00100000                __vectors_load_start__ = __FLASH_segment_start__
+
+.vectors        0x00100000       0x3c
+                0x00100000                __vectors_start__ = .
+ *(.vectors .vectors.*)
+ .vectors       0x00100000       0x3c ARM Flash Release/AT91SAM7_Startup.o
+                0x00100000                _vectors
+                0x0010003c                __vectors_end__ = (__vectors_start__ + SIZEOF (.vectors))
+                0x00000001                . = ASSERT (((__vectors_end__ >= __FLASH_segment_start__) && (__vectors_end__ <= (__FLASH_segment_start__ + 0x40000))), error: .vectors is too large to fit in FLASH memory segment)
+                0x0010003c                __init_load_start__ = (__vectors_end__ ALIGN 0x4)
+
+.init           0x0010003c      0x2e4
+                0x0010003c                __init_start__ = .
+ *(.init .init.*)
+ *fill*         0x0010003c        0x4 00
+ .init          0x00100040      0x1d0 ARM Flash Release/crt0.o
+                0x00100040                _start
+                0x00100040                __start
+ .init          0x00100210      0x110 ARM Flash Release/AT91SAM7_Startup.o
+                0x00100210                reset_handler
+                0x001002e4                undef_handler
+                0x001002e8                swi_handler
+                0x001002ec                pabort_handler
+                0x001002f0                dabort_handler
+                0x001002f8                fiq_handler
+                0x00100320                __init_end__ = (__init_start__ + SIZEOF (.init))
+                0x00000001                . = ASSERT (((__init_end__ >= __FLASH_segment_start__) && (__init_end__ <= (__FLASH_segment_start__ + 0x40000))), error: .init is too large to fit in FLASH memory segment)
+                0x00100320                __text_load_start__ = (__init_end__ ALIGN 0x4)
+
+.text           0x00100320      0x8f0
+                0x00100320                __text_start__ = .
+ *(.text .text.* .glue_7t .glue_7 .gnu.linkonce.t.* .gcc_except_table)
+ .glue_7        0x00000000        0x0 linker stubs
+ .glue_7t       0x00000000        0x0 linker stubs
+ .text          0x00100320        0x0 ARM Flash Release/crt0.o
+ .text          0x00100320        0x0 ARM Flash Release/AT91SAM7_Startup.o
+ .text          0x00100320       0xf4 ARM Flash Release/AIC.o
+                0x00100320                ctl_set_isr
+                0x001003e4                ctl_unmask_isr
+                0x001003fc                ctl_mask_isr
+ .text          0x00100414       0x40 ARM Flash Release/AIC_irq_handler.o
+                0x00100414                irq_handler
+ .text          0x00100454      0x140 ARM Flash Release/ctl_at91sam7.o
+                0x0010048c                ctl_at91sam7_get_mck_frequency
+                0x00100508                ctl_get_ticks_per_second
+                0x00100510                ctl_start_timer
+ .text          0x00100594       0xe8 ARM Flash Release/main.o
+                0x00100594                main
+ .text          0x0010067c      0x55c ARM Flash Release/lcd.o
+                0x0010067c                Delaya
+                0x00100680                Delay_
+                0x001006a8                InitLCD
+                0x00100714                WriteSpiCommand
+                0x00100734                WriteSpiData
+                0x00100754                Backlight
+                0x00100778                SetContrast
+                0x0010077c                LCDSettings
+                0x0010089c                LCDWrite130x130bmp
+                0x00100944                LCDWriteChar
+                0x001009a0                LCDPutChar
+                0x00100af0                LCDPutStr
+                0x00100b60                LCDClearScreen
+ .text          0x00100bd8        0x0 C:/Program Files/Rowley Associates Limited/CrossWorks for ARM 2.0/lib/libc_v4t_a_le.a(__int32_udivmod.o)
+ *fill*         0x00100bd8        0x8 00
+ .text.libc     0x00100be0       0x30 C:/Program Files/Rowley Associates Limited/CrossWorks for ARM 2.0/lib/libc_v4t_a_le.a(__int32_udivmod.o)
+                0x00100be0                __int32_udivmod
+                0x00100be0                __udivsi3
+                0x00100be0                __int32_udiv
+                0x00100c10                __text_end__ = (__text_start__ + SIZEOF (.text))
+
+.vfp11_veneer   0x00000000        0x0
+ .vfp11_veneer  0x00000000        0x0 linker stubs
+
+.v4_bx          0x00000000        0x0
+ .v4_bx         0x00000000        0x0 linker stubs
+                0x00000001                . = ASSERT (((__text_end__ >= __FLASH_segment_start__) && (__text_end__ <= (__FLASH_segment_start__ + 0x40000))), error: .text is too large to fit in FLASH memory segment)
+                0x00100c10                __dtors_load_start__ = (__text_end__ ALIGN 0x4)
+
+.dtors          0x00100c10        0x0
+                0x00100c10                __dtors_start__ = .
+ *(SORT(.dtors.*))
+ *(.dtors)
+                0x00100c10                __dtors_end__ = (__dtors_start__ + SIZEOF (.dtors))
+                0x00000001                . = ASSERT (((__dtors_end__ >= __FLASH_segment_start__) && (__dtors_end__ <= (__FLASH_segment_start__ + 0x40000))), error: .dtors is too large to fit in FLASH memory segment)
+                0x00100c10                __ctors_load_start__ = (__dtors_end__ ALIGN 0x4)
+
+.ctors          0x00100c10        0x0
+                0x00100c10                __ctors_start__ = .
+ *(SORT(.ctors.*))
+ *(.ctors)
+                0x00100c10                __ctors_end__ = (__ctors_start__ + SIZEOF (.ctors))
+                0x00000001                . = ASSERT (((__ctors_end__ >= __FLASH_segment_start__) && (__ctors_end__ <= (__FLASH_segment_start__ + 0x40000))), error: .ctors is too large to fit in FLASH memory segment)
+                0x00100c10                __rodata_load_start__ = (__ctors_end__ ALIGN 0x4)
+
+.rodata         0x00100c10     0x724c
+                0x00100c10                __rodata_start__ = .
+ *(.rodata .rodata.* .gnu.linkonce.r.*)
+ .rodata.str1.4
+                0x00100c10        0x8 ARM Flash Release/main.o
+ .rodata        0x00100c18     0x7244 ARM Flash Release/lcd.o
+                0x00100c18                bmp
+                0x0010723c                FONT6x8
+                0x00107544                FONT8x8
+                0x0010784c                FONT8x16
+                0x00107e5c                __rodata_end__ = (__rodata_start__ + SIZEOF (.rodata))
+                0x00000001                . = ASSERT (((__rodata_end__ >= __FLASH_segment_start__) && (__rodata_end__ <= (__FLASH_segment_start__ + 0x40000))), error: .rodata is too large to fit in FLASH memory segment)
+                0x00107e5c                __fast_load_start__ = (__rodata_end__ ALIGN 0x4)
+
+.fast           0x0020003c       0x48 load address 0x00107e5c
+                0x0020003c                __fast_start__ = .
+ *(.fast .fast.*)
+ .fast          0x0020003c       0x48 ARM Flash Release/main.o
+                0x0020003c                delay
+                0x00200084                __fast_end__ = (__fast_start__ + SIZEOF (.fast))
+                0x00107ea4                __fast_load_end__ = (__fast_load_start__ + SIZEOF (.fast))
+                0x00000001                . = ASSERT ((((__fast_load_start__ + SIZEOF (.fast)) >= __FLASH_segment_start__) && ((__fast_load_start__ + SIZEOF (.fast)) <= (__FLASH_segment_start__ + 0x40000))), error: .fast is too large to fit in FLASH memory segment)
+
+.fast_run       0x0020003c       0x48
+                0x0020003c                __fast_run_start__ = .
+                0x00200084                . = ((__fast_run_start__ + SIZEOF (.fast)) MAX .)
+ *fill*         0x0020003c       0x48 00
+                0x00200084                __fast_run_end__ = (__fast_run_start__ + SIZEOF (.fast_run))
+                0x00000001                . = ASSERT (((__fast_run_end__ >= __SRAM_segment_start__) && (__fast_run_end__ <= (__SRAM_segment_start__ + 0x10000))), error: .fast_run is too large to fit in SRAM memory segment)
+                0x00107ea4                __data_load_start__ = ((__fast_load_start__ + SIZEOF (.fast)) ALIGN 0x4)
+
+.data           0x00200084        0x0 load address 0x00107ea4
+                0x00200084                __data_start__ = .
+ *(.data .data.* .gnu.linkonce.d.*)
+ .data          0x00200084        0x0 ARM Flash Release/crt0.o
+ .data          0x00200084        0x0 ARM Flash Release/AT91SAM7_Startup.o
+ .data          0x00200084        0x0 ARM Flash Release/AIC.o
+ .data          0x00200084        0x0 ARM Flash Release/AIC_irq_handler.o
+ .data          0x00200084        0x0 ARM Flash Release/ctl_at91sam7.o
+ .data          0x00200084        0x0 ARM Flash Release/main.o
+ .data          0x00200084        0x0 ARM Flash Release/lcd.o
+ .data          0x00200084        0x0 C:/Program Files/Rowley Associates Limited/CrossWorks for ARM 2.0/lib/libc_v4t_a_le.a(__int32_udivmod.o)
+                0x00200084                __data_end__ = (__data_start__ + SIZEOF (.data))
+                0x00107ea4                __data_load_end__ = (__data_load_start__ + SIZEOF (.data))
+                0x00107ea4                __FLASH_segment_used_end__ = (((__fast_load_start__ + SIZEOF (.fast)) ALIGN 0x4) + SIZEOF (.data))
+                0x00000001                . = ASSERT ((((__data_load_start__ + SIZEOF (.data)) >= __FLASH_segment_start__) && ((__data_load_start__ + SIZEOF (.data)) <= (__FLASH_segment_start__ + 0x40000))), error: .data is too large to fit in FLASH memory segment)
+
+.data_run       0x00200084        0x0
+                0x00200084                __data_run_start__ = .
+                0x00200084                . = ((__data_run_start__ + SIZEOF (.data)) MAX .)
+                0x00200084                __data_run_end__ = (__data_run_start__ + SIZEOF (.data_run))
+                0x00000001                . = ASSERT (((__data_run_end__ >= __SRAM_segment_start__) && (__data_run_end__ <= (__SRAM_segment_start__ + 0x10000))), error: .data_run is too large to fit in SRAM memory segment)
+                0x00200084                __bss_load_start__ = (__data_run_end__ ALIGN 0x4)
+
+.bss            0x00200084        0xc
+                0x00200084                __bss_start__ = .
+ *(.bss .bss.* .gnu.linkonce.b.*)
+ .bss           0x00200084        0x0 ARM Flash Release/crt0.o
+ .bss           0x00200084        0x0 ARM Flash Release/AT91SAM7_Startup.o
+ .bss           0x00200084        0x0 ARM Flash Release/AIC.o
+ .bss           0x00200084        0x0 ARM Flash Release/AIC_irq_handler.o
+ .bss           0x00200084        0x4 ARM Flash Release/ctl_at91sam7.o
+ .bss           0x00200088        0x0 ARM Flash Release/main.o
+ .bss           0x00200088        0x0 ARM Flash Release/lcd.o
+ .bss           0x00200088        0x0 C:/Program Files/Rowley Associates Limited/CrossWorks for ARM 2.0/lib/libc_v4t_a_le.a(__int32_udivmod.o)
+ *(COMMON)
+ COMMON         0x00200088        0x8 ARM Flash Release/lcd.o
+                0x00200088                j
+                0x0020008c                i
+                0x00200090                __bss_end__ = (__bss_start__ + SIZEOF (.bss))
+                0x00000001                . = ASSERT (((__bss_end__ >= __SRAM_segment_start__) && (__bss_end__ <= (__SRAM_segment_start__ + 0x10000))), error: .bss is too large to fit in SRAM memory segment)
+                0x00200090                __non_init_load_start__ = (__bss_end__ ALIGN 0x4)
+
+.non_init       0x00200090        0x0
+                0x00200090                __non_init_start__ = .
+ *(.non_init .non_init.*)
+                0x00200090                __non_init_end__ = (__non_init_start__ + SIZEOF (.non_init))
+                0x00000001                . = ASSERT (((__non_init_end__ >= __SRAM_segment_start__) && (__non_init_end__ <= (__SRAM_segment_start__ + 0x10000))), error: .non_init is too large to fit in SRAM memory segment)
+                0x00200090                __heap_load_start__ = (__non_init_end__ ALIGN 0x4)
+
+.heap           0x00200090      0x400
+                0x00200090                __heap_start__ = .
+ *(.heap)
+ .heap          0x00200090        0x0 ARM Flash Release/crt0.o
+                0x00200490                . = (((__heap_start__ + __HEAPSIZE__) MAX .) ALIGN 0x4)
+ *fill*         0x00200090      0x400 00
+                0x00200490                __heap_end__ = (__heap_start__ + SIZEOF (.heap))
+                0x00000001                . = ASSERT (((__heap_end__ >= __SRAM_segment_start__) && (__heap_end__ <= (__SRAM_segment_start__ + 0x10000))), error: .heap is too large to fit in SRAM memory segment)
+                0x00200490                __stack_load_start__ = (__heap_end__ ALIGN 0x4)
+
+.stack          0x00200490      0x400
+                0x00200490                __stack_start__ = .
+ *(.stack)
+ .stack         0x00200490        0x0 ARM Flash Release/crt0.o
+                0x00200890                . = (((__stack_start__ + __STACKSIZE__) MAX .) ALIGN 0x4)
+ *fill*         0x00200490      0x400 00
+                0x00200890                __stack_end__ = (__stack_start__ + SIZEOF (.stack))
+                0x00000001                . = ASSERT (((__stack_end__ >= __SRAM_segment_start__) && (__stack_end__ <= (__SRAM_segment_start__ + 0x10000))), error: .stack is too large to fit in SRAM memory segment)
+                0x00200890                __stack_irq_load_start__ = (__stack_end__ ALIGN 0x4)
+
+.stack_irq      0x00200890      0x100
+                0x00200890                __stack_irq_start__ = .
+ *(.stack_irq)
+ .stack_irq     0x00200890        0x0 ARM Flash Release/crt0.o
+                0x00200990                . = (((__stack_irq_start__ + __STACKSIZE_IRQ__) MAX .) ALIGN 0x4)
+ *fill*         0x00200890      0x100 00
+                0x00200990                __stack_irq_end__ = (__stack_irq_start__ + SIZEOF (.stack_irq))
+                0x00000001                . = ASSERT (((__stack_irq_end__ >= __SRAM_segment_start__) && (__stack_irq_end__ <= (__SRAM_segment_start__ + 0x10000))), error: .stack_irq is too large to fit in SRAM memory segment)
+                0x00200990                __stack_fiq_load_start__ = (__stack_irq_end__ ALIGN 0x4)
+
+.stack_fiq      0x00200990      0x100
+                0x00200990                __stack_fiq_start__ = .
+ *(.stack_fiq)
+ .stack_fiq     0x00200990        0x0 ARM Flash Release/crt0.o
+                0x00200a90                . = (((__stack_fiq_start__ + __STACKSIZE_FIQ__) MAX .) ALIGN 0x4)
+ *fill*         0x00200990      0x100 00
+                0x00200a90                __stack_fiq_end__ = (__stack_fiq_start__ + SIZEOF (.stack_fiq))
+                0x00000001                . = ASSERT (((__stack_fiq_end__ >= __SRAM_segment_start__) && (__stack_fiq_end__ <= (__SRAM_segment_start__ + 0x10000))), error: .stack_fiq is too large to fit in SRAM memory segment)
+                0x00200a90                __stack_svc_load_start__ = (__stack_fiq_end__ ALIGN 0x4)
+
+.stack_svc      0x00200a90        0x0
+                0x00200a90                __stack_svc_start__ = .
+ *(.stack_svc)
+ .stack_svc     0x00200a90        0x0 ARM Flash Release/crt0.o
+                0x00200a94                . = (((__stack_svc_start__ + __STACKSIZE_SVC__) MAX .) ALIGN 0x4)
+                0x00200a90                __stack_svc_end__ = (__stack_svc_start__ + SIZEOF (.stack_svc))
+                0x00000001                . = ASSERT (((__stack_svc_end__ >= __SRAM_segment_start__) && (__stack_svc_end__ <= (__SRAM_segment_start__ + 0x10000))), error: .stack_svc is too large to fit in SRAM memory segment)
+                0x00200a90                __stack_abt_load_start__ = (__stack_svc_end__ ALIGN 0x4)
+
+.stack_abt      0x00200a90        0x0
+                0x00200a90                __stack_abt_start__ = .
+ *(.stack_abt)
+ .stack_abt     0x00200a90        0x0 ARM Flash Release/crt0.o
+                0x00200a94                . = (((__stack_abt_start__ + __STACKSIZE_ABT__) MAX .) ALIGN 0x4)
+                0x00200a90                __stack_abt_end__ = (__stack_abt_start__ + SIZEOF (.stack_abt))
+                0x00000001                . = ASSERT (((__stack_abt_end__ >= __SRAM_segment_start__) && (__stack_abt_end__ <= (__SRAM_segment_start__ + 0x10000))), error: .stack_abt is too large to fit in SRAM memory segment)
+                0x00200a90                __stack_und_load_start__ = (__stack_abt_end__ ALIGN 0x4)
+
+.stack_und      0x00200a90        0x0
+                0x00200a90                __stack_und_start__ = .
+ *(.stack_und)
+ .stack_und     0x00200a90        0x0 ARM Flash Release/crt0.o
+                0x00200a94                . = (((__stack_und_start__ + __STACKSIZE_UND__) MAX .) ALIGN 0x4)
+                0x00200a90                __stack_und_end__ = (__stack_und_start__ + SIZEOF (.stack_und))
+                0x00200a90                __SRAM_segment_used_end__ = ((__stack_abt_end__ ALIGN 0x4) + SIZEOF (.stack_und))
+                0x00000001                . = ASSERT (((__stack_und_end__ >= __SRAM_segment_start__) && (__stack_und_end__ <= (__SRAM_segment_start__ + 0x10000))), error: .stack_und is too large to fit in SRAM memory segment)
+START GROUP
+LOAD ARM Flash Release/crt0.o
+LOAD ARM Flash Release/AT91SAM7_Startup.o
+LOAD ARM Flash Release/AIC.o
+LOAD ARM Flash Release/AIC_irq_handler.o
+LOAD ARM Flash Release/ctl_at91sam7.o
+LOAD ARM Flash Release/main.o
+LOAD ARM Flash Release/lcd.o
+LOAD C:/Program Files/Rowley Associates Limited/CrossWorks for ARM 2.0/lib/libarm_v4t_a_le.a
+LOAD C:/Program Files/Rowley Associates Limited/CrossWorks for ARM 2.0/lib/libdebugio_dcc_v4t_a_le.a
+LOAD C:/Program Files/Rowley Associates Limited/CrossWorks for ARM 2.0/lib/libm_v4t_a_le.a
+LOAD C:/Program Files/Rowley Associates Limited/CrossWorks for ARM 2.0/lib/libc_v4t_a_le.a
+LOAD C:/Program Files/Rowley Associates Limited/CrossWorks for ARM 2.0/lib/libcpp_v4t_a_le.a
+LOAD C:/Program Files/Rowley Associates Limited/CrossWorks for ARM 2.0/lib/libdebugio_v4t_a_le.a
+LOAD C:/Program Files/Rowley Associates Limited/CrossWorks for ARM 2.0/lib/libc_targetio_impl_v4t_a_le.a
+LOAD C:/Program Files/Rowley Associates Limited/CrossWorks for ARM 2.0/lib/lib_vfprintf_long_v4t_a_le.a
+LOAD C:/Program Files/Rowley Associates Limited/CrossWorks for ARM 2.0/lib/lib_vfscanf_long_v4t_a_le.a
+LOAD C:/Program Files/Rowley Associates Limited/CrossWorks for ARM 2.0/lib/libc_user_libc_v4t_a_le.a
+END GROUP
+OUTPUT(ARM Flash Release/cw1_arm.elf elf32-littlearm)
+
+.ARM.attributes
+                0x00000000       0x10
+ .ARM.attributes
+                0x00000000       0x10 ARM Flash Release/crt0.o
+ .ARM.attributes
+                0x00000010       0x10 ARM Flash Release/AT91SAM7_Startup.o
+ .ARM.attributes
+                0x00000020       0x10 ARM Flash Release/AIC.o
+ .ARM.attributes
+                0x00000030       0x10 ARM Flash Release/AIC_irq_handler.o
+ .ARM.attributes
+                0x00000040       0x10 ARM Flash Release/ctl_at91sam7.o
+ .ARM.attributes
+                0x00000050       0x10 ARM Flash Release/main.o
+ .ARM.attributes
+                0x00000060       0x10 ARM Flash Release/lcd.o
+ .ARM.attributes
+                0x00000070       0x10 C:/Program Files/Rowley Associates Limited/CrossWorks for ARM 2.0/lib/libc_v4t_a_le.a(__int32_udivmod.o)
+
+.comment        0x00000000       0x11
+ .comment       0x00000000       0x11 ARM Flash Release/AIC.o
+                                 0x12 (size before relaxing)
+ .comment       0x00000000       0x12 ARM Flash Release/ctl_at91sam7.o
+ .comment       0x00000000       0x12 ARM Flash Release/main.o
+ .comment       0x00000000       0x12 ARM Flash Release/lcd.o
+
+.debug_abbrev   0x00000000       0xeb
+ .debug_abbrev  0x00000000       0x36 ARM Flash Release/AIC.o
+ .debug_abbrev  0x00000036       0x47 ARM Flash Release/ctl_at91sam7.o
+ .debug_abbrev  0x0000007d       0x25 ARM Flash Release/main.o
+ .debug_abbrev  0x000000a2       0x49 ARM Flash Release/lcd.o
+
+.debug_info     0x00000000      0x224
+ .debug_info    0x00000000       0x56 ARM Flash Release/AIC.o
+ .debug_info    0x00000056       0x6b ARM Flash Release/ctl_at91sam7.o
+ .debug_info    0x000000c1       0x4a ARM Flash Release/main.o
+ .debug_info    0x0000010b      0x119 ARM Flash Release/lcd.o
+
+.debug_line     0x00000000      0x1f8
+ .debug_line    0x00000000       0x74 ARM Flash Release/AIC.o
+ .debug_line    0x00000074       0xef ARM Flash Release/ctl_at91sam7.o
+ .debug_line    0x00000163       0x4b ARM Flash Release/main.o
+ .debug_line    0x000001ae       0x4a ARM Flash Release/lcd.o
+
+.debug_frame    0x00000000      0x2d4
+ .debug_frame   0x00000000       0x4c ARM Flash Release/AIC.o
+ .debug_frame   0x0000004c       0x80 ARM Flash Release/ctl_at91sam7.o
+ .debug_frame   0x000000cc       0x54 ARM Flash Release/main.o
+ .debug_frame   0x00000120      0x194 ARM Flash Release/lcd.o
+ .debug_frame   0x000002b4       0x20 C:/Program Files/Rowley Associates Limited/CrossWorks for ARM 2.0/lib/libc_v4t_a_le.a(__int32_udivmod.o)
+
+.debug_loc      0x00000000      0x1c3
+ .debug_loc     0x00000000       0x1f ARM Flash Release/AIC.o
+ .debug_loc     0x0000001f       0x69 ARM Flash Release/ctl_at91sam7.o
+ .debug_loc     0x00000088       0x4a ARM Flash Release/main.o
+ .debug_loc     0x000000d2       0xf1 ARM Flash Release/lcd.o
+
+.debug_pubnames
+                0x00000000      0x1b0
+ .debug_pubnames
+                0x00000000       0x46 ARM Flash Release/AIC.o
+ .debug_pubnames
+                0x00000046       0x66 ARM Flash Release/ctl_at91sam7.o
+ .debug_pubnames
+                0x000000ac       0x25 ARM Flash Release/main.o
+ .debug_pubnames
+                0x000000d1       0xdf ARM Flash Release/lcd.o
+
+.debug_aranges  0x00000000       0x88
+ .debug_aranges
+                0x00000000       0x20 ARM Flash Release/AIC.o
+ .debug_aranges
+                0x00000020       0x20 ARM Flash Release/ctl_at91sam7.o
+ .debug_aranges
+                0x00000040       0x28 ARM Flash Release/main.o
+ .debug_aranges
+                0x00000068       0x20 ARM Flash Release/lcd.o
+
+.debug_str      0x00000000      0x264
+ .debug_str     0x00000000       0xa3 ARM Flash Release/AIC.o
+ .debug_str     0x000000a3       0xc8 ARM Flash Release/ctl_at91sam7.o
+                                 0xd4 (size before relaxing)
+ .debug_str     0x0000016b       0x36 ARM Flash Release/main.o
+                                 0x42 (size before relaxing)
+ .debug_str     0x000001a1       0xc3 ARM Flash Release/lcd.o
+                                 0xcf (size before relaxing)
+
+.debug_ranges   0x00000000       0x20
+ .debug_ranges  0x00000000       0x20 ARM Flash Release/main.o
